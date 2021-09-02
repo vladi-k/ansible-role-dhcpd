@@ -1,0 +1,20 @@
+---
+- name: Install packages
+  ansible.builtin.package:
+    name: "{{ dhcpd_packages }}"
+    state: present
+
+- name: "Generate {{ dhcpd_conf_file }}"
+  ansible.builtin.template:
+    src: dhcpd.conf
+    dest: "{{ dhcpd_conf_file }}"
+    owner: root
+    mode: 0444
+  notify: restart dhcpd
+
+- name: Enable and start dhcpd
+  ansible.builtin.service:
+    name: "{{ dhcpd_service_name }}"
+    state: started
+    enabled: true
+  when: dhcpd_service_enable | bool

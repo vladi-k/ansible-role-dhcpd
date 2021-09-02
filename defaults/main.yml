@@ -1,0 +1,11 @@
+---
+dhcpd_packages:
+  - dhcp-server
+
+dhcpd_conf_file: /etc/dhcp/dhcpd.conf
+
+dhcpd_service_name: dhcpd
+dhcpd_service_enable: true
+
+dhcpd_global_params: []
+dhcpd_subnets: []
